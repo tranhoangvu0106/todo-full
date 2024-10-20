@@ -23,10 +23,6 @@ const port = process.env.PORT || 5000
 
  const Todo = mongoose.model('Todo', todoSchema);
 
- app.listen(port, () => {
-    console.log(`Server is running is port ${port}`);
- });
-
  app.post('/api/todo', async (req, res) => {
     try {
         const {text} = req.body;
@@ -67,3 +63,9 @@ app.delete('/api/todo/:id', async (req, res) => {
         res.status(400).json({ error: 'Failed to delete job'});
     }
 });
+
+ app.listen(port, () => {
+    console.log(`Server is running is port ${port}`);
+ });
+
+
