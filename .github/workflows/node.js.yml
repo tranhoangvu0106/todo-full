@@ -28,4 +28,4 @@ jobs:
 
     - name: Deploy
       run: |
-        sudo cp -r frontend/build/* /var/www/html/
+        cp -r frontend/build/* /var/www/html/
