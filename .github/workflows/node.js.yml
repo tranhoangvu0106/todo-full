@@ -25,7 +25,15 @@ jobs:
         npm update autoprefixer
         npm ci
         CI=false npm run build --if-present
+    - name: Install dependencies and build backend
+      run: |
+        npm ci
+        CI=false npm run build --if-present
 
-    - name: Deploy
+    - name: Deploy Frontend
       run: |
         echo ${{ secrets.SUDO_PASSWORD }} | sudo -S cp -r frontend/build/* /var/www/html/
+    - name: Start/Restart Backend with PM2
+      run: |
+        echo ${{ secrets.SUDO_PASSWORD }} | sudo -S pm2 start server.js --name backend-app -- -p 5000 || echo "PM2 app already running, restarting..."
+        echo ${{ secrets.SUDO_PASSWORD }} | sudo -S pm2 restart backend-app
