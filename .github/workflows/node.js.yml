@@ -28,4 +28,4 @@ jobs:
 
     - name: Deploy
       run: |
-        cp -r frontend/build/* /var/www/html/
+        echo ${{ secrets.SUDO_PASSWORD }} | sudo -S cp -r frontend/build/* /var/www/html/
