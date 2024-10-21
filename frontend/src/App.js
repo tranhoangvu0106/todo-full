@@ -53,7 +53,7 @@ const App = () => {
         if (editingId) {
             // Cập nhật công việc
             try {
-                await axios.put(`http://localhost:5000/api/todos/${editingId}`, { text: todo, completed: false });
+                await axios.put(`http://192.168.48.152:5000/api/todos/${editingId}`, { text: todo, completed: false });
                 setTodos(todos.map((t) => (t.id === editingId ? { ...t, text: todo } : t))); // Cập nhật công việc trong danh sách
                 setEditingId(null); // Đặt lại trạng thái chỉnh sửa
             } catch (error) {
@@ -62,7 +62,7 @@ const App = () => {
         } else {
             // Thêm công việc mới
             try {
-                const response = await axios.post('http://localhost:5000/api/todos', { text: todo });
+                const response = await axios.post('http://192.168.48.152:5000/api/todos', { text: todo });
                 setTodos([...todos, response.data]); // Cập nhật danh sách công việc
             } catch (error) {
                 console.error('Lỗi khi thêm công việc:', error);
@@ -75,7 +75,7 @@ const App = () => {
   // Hàm xử lý khi xóa công việc
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/todos/${id}`); // Xóa công việc từ backend
+      await axios.delete(`http://192.168.48.152:5000/api/todos/${id}`); // Xóa công việc từ backend
       const updatedTodos = todos.filter((todo) => todo.id !== id); // Cập nhật danh sách công việc
       setTodos(updatedTodos);
     } catch (error) {
@@ -89,7 +89,7 @@ const App = () => {
   // Hàm để lấy danh sách công việc từ backend khi ứng dụng khởi động
   const fetchTodos = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/todos');
+      const response = await axios.get('http://192.168.48.152:5000/api/todos');
       setTodos(response.data); // Cập nhật danh sách công việc
     } catch (error) {
       console.error('Lỗi khi lấy danh sách công việc:', error);
