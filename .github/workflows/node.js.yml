@@ -30,7 +30,7 @@ jobs:
         npm ci
         CI=false npm run build --if-present
 
-    - name: Deploy Frontend
+    - name: Deploy Fronten
       run: |
         echo ${{ secrets.SUDO_PASSWORD }} | sudo -S cp -r frontend/build/* /var/www/html/
     - name: Start/Restart Backend with PM2
